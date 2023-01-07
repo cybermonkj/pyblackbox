@@ -6,7 +6,7 @@ import urllib.request
 import json
 import requests
 
- 
+
 def openCovid():
     covidWindow = tk.Tk() 
     covidWindow.geometry('500x500')
@@ -26,7 +26,7 @@ def openCovid():
         cleanCovidData["Month"]  = cleanCovidData["date"].dt.month #get month
         cleanCovidData["Week"]  = cleanCovidData["date"].dt.week #get week
         cleanCovidData["Day"]  = cleanCovidData["date"].dt.day #get Day
-        
+
         hartlepoolFirst30Days = cleanCovidData[0:30] #select hartlepool result
         hartlepoolFirst30Days.plot(kind = "bar", y = "Total number of cases daily", x="Day", title="Hartlepool number of cases in first 30 days")
 
@@ -70,14 +70,14 @@ def openCovid():
         cleanCovidData['Total number of cases daily'] = sumCovidData
         hartlepoolFirst5Months = cleanCovidData[0:210]
         hartlepoolFirst5Months.plot(kind = "area", y = "Total number of cases daily", x="Month", title="Hartlepool number of cases in first 30 weeks")
-        
+
         plt.show()
     def changeInCasesOverTimeAndLocation():
         def open_file():
 
             file = filedialog.askopenfile(filetypes=[('Python Files', '*.csv')])
             return file 
-                        
+
         file2 = open_file()
         covidData =  pd.read_csv(file2,\
                                 index_col = 0, parse_dates = ["date"])
@@ -104,7 +104,7 @@ def openCovid():
 
             file = filedialog.askopenfile(filetypes=[('Python Files', '*.csv')])
             return file 
-                        
+
         file2 = open_file()
         covidDataa =  pd.read_csv(file2,\
                             index_col = 0, parse_dates = ["date"])
@@ -150,7 +150,7 @@ def openCovid():
 
             file = filedialog.askopenfile(filetypes=[('Python Files', '*.csv')])
             return file 
-                        
+
         file6= open_file()
         covidData =  pd.read_csv(file6,\
                             index_col = 0, parse_dates = ["date"])
@@ -176,7 +176,7 @@ def openCovid():
 
             file = filedialog.askopenfile(filetypes=[('Python Files', '*.csv')])
             return file 
-                        
+
         file7= open_file()
         covidData =  pd.read_csv(file7,\
                             index_col = 0, parse_dates = ["date"])
@@ -233,7 +233,7 @@ def openCovid():
     ttk.Button(covidWindow, text="Rolling rate over time and area", command=areasWithHighestRollingRates).place(relx=0, rely=0.67)
     ttk.Button(covidWindow, text="Compare cumulative sum", command=compareAreasCumulativeSum).place(relx=0.5, rely=0.67)
 
-  
+
     covidWindow.mainloop() 
 def openStopnSearch():
     snsWindow = tk.Tk() 
@@ -345,7 +345,7 @@ def openStopnSearch():
         with urllib.request.urlopen(northumbriaUrl_04_2020) as resp2:
             northumbria2020Data = resp2.read()
 #Api call to read data for cleveland    
-        
+
 #Read and load data in panada dataframe
             jsonFormatNorthumbria2021Data = json.loads(northumbria2021Data)  
             northumbria2021Dataset = pd.json_normalize(jsonFormatNorthumbria2021Data)
@@ -367,7 +367,7 @@ def openStopnSearch():
             fig, (ax0, ax1) = plt.subplots(nrows = 2, ncols = 1, sharey = True, figsize = (30, 10))
             northumbriaData0.plot(kind = "hist", y= 'week', ax=ax0)
             northumbriaData1.plot(kind = "hist", y= 'week', ax=ax1)
-    
+
             ax0.set(title = "2021 record", xlabel = "", ylabel = "time")
             ax1.set(title = "2020 record", xlabel = "", ylabel = "time")
             plt.show()
@@ -381,7 +381,7 @@ def openStopnSearch():
         with urllib.request.urlopen(northumbriaUrl_04_2020) as resp2:
             northumbria2020Data = resp2.read()
 #Api call to read data for cleveland    
-        
+
 #Read and load data in panada dataframe
             jsonFormatNorthumbria2021Data = json.loads(northumbria2021Data)  
             northumbria2021Dataset = pd.json_normalize(jsonFormatNorthumbria2021Data)
@@ -403,16 +403,16 @@ def openStopnSearch():
             fig, (ax0, ax1) = plt.subplots(nrows = 2, ncols = 1, sharey = True, figsize = (10, 10))
             northumbriaData0.plot(kind = "barh", y= 'day', ax=ax0)
             northumbriaData1.plot(kind = "barh", y= 'day', ax=ax1)
-    
+
             ax0.set(title = "2021 record", xlabel = "Time ", ylabel = "Age range ")
             ax1.set(title = "2020 record", xlabel = "Time ", ylabel = "Age range ")
             plt.show()
-        
+
     ttk.Button(snsWindow, text="cleveland and northumbria arrests record", command=showClevelandNorthumbriaOutcome).place(relx=0, rely=0.13)
     ttk.Button(snsWindow, text="breakdown of cleveland force based on ethnicity", command=showBreakdownForSummer).place(relx=0, rely=0.4)
     ttk.Button(snsWindow, text="compare arrest between 2020 and 2021", command=showArrestBreakdownAcrossYears).place(relx=0, rely=0.65)
     ttk.Button(snsWindow, text="compare stops by age and gender between 2020 and 2021", command=showBreakdownAcrossYears).place(relx=0, rely=0.85)          
-    
+
     snsWindow.mainloop()
 
 
