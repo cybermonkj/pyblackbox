@@ -1,10 +1,9 @@
 import tkinter as tk
-from tkinter import filedialog, messagebox, ttk
+from tkinter import filedialog, ttk
 import pandas as pd
 import matplotlib.pyplot as plt
 import urllib.request
 import json
-import requests
 
 
 def openCovid():
